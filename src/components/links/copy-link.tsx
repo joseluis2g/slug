@@ -12,7 +12,6 @@ interface CopyLinkProps {
 
 const CopyLinkDropdown = (props: CopyLinkProps) => {
   const [, copy] = useCopyToClipboard();
-  const url = "https://slug.vercel.app";
 
   const handleCopy = (text: string) => () => {
     copy(text)
@@ -32,7 +31,9 @@ const CopyLinkDropdown = (props: CopyLinkProps) => {
   };
 
   return (
-    <DropdownMenuItem onClick={handleCopy(`${url}/${props.slug}`)}>
+    <DropdownMenuItem
+      onClick={handleCopy(`${process.env.NEXT_PUBLIC_APP_URL}/${props.slug}`)}
+    >
       <ClipboardIcon size={15} />
       <span>Copy to clipboard</span>
     </DropdownMenuItem>
